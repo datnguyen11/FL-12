@@ -1,0 +1,265 @@
+@mixin font(
+    $family: $main-font,
+    $size: 16px,
+    $weight: normal,
+    $color: inherit
+) {
+    font-family: $family;
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+}
+
+@mixin main-font($color: #fff, $size: 16px) {
+    font-family: $main-font;
+    color: $color;
+    font-size: $size;
+}
+
+@mixin bf-underlay($w, $h) {
+    content: "";
+    position: absolute;
+    width: $w;
+    height: $h;
+    z-index: -1;
+    background: $highlighted-text;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-flow: column;
+}
+
+@mixin flex-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body {
+    background-color: $content-bg;
+    font-family: $main-font;
+    padding: 0;
+    margin: 0;
+}
+
+.landing-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 70px;
+    img {
+        margin-right: 15px;
+    }
+    p {
+        margin: 0;
+        @include font("Hind", 23px, 600);
+        line-height: 1;
+        text-align: center;
+    }
+    span {
+        @include font($main-font, 10px, 400);
+        display: block;
+    }
+}
+
+.header {
+    box-sizing: border-box;
+    background: $header-bg-url no-repeat center;
+    background-size: cover;
+    padding: 20px 30px 175px;
+    // border-radius: 50px / 80px;
+    border-radius: 0 0 800px/280px 0;
+
+    &-wrap {
+        max-width: 1540px;
+        margin: 0 auto;
+    }
+
+    &_heading {
+        @include font($alt-font, 72px, 700);
+        line-height: 72px;
+        max-width: 700px;
+        margin: 0 0 37px 0;
+        position: relative;
+        z-index: 10;
+
+        &::before {
+            @include bf-underlay(303px, 50px);
+            top: 93px;
+            left: 0;
+        }
+    }
+
+    &_text {
+        white-space: pre-line;
+        letter-spacing: 0.2px;
+        line-height: 25px;
+        margin: 0 0 60px 0;
+    }
+
+    &_button {
+        display: inline-block;
+        @include font($alt-font, 18px, 600, #fff);
+        padding: 13px 45px;
+        background-color: $btn-color;
+        border-radius: 3px;
+        border: none;
+        margin: 0 150px 0 0;
+    }
+
+    .login {
+        @include font($alt-font, 20px, 600, #fff);
+        letter-spacing: -0.3px;
+    }
+}
+
+.section {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 35px 30px 170px;
+    position: relative;
+    &_text {
+        position: relative;
+        @include font($alt-font, 42px, 600);
+        text-align: center;
+        margin: 0;
+        z-index: 10;
+        &::before {
+            @include bf-underlay(190px, 50px);
+            top: -5px;
+            right: 388px;
+        }
+    }
+
+    &_card {
+        background-color: $card-bg;
+        padding: 15px;
+        border-radius: 5px;
+        display: flex;
+        min-width: 0;
+        &_wrap {
+            display: grid;
+            grid-template-rows: auto auto auto;
+            grid-gap: 25px;
+            padding: 40px 30px;
+        }
+
+        &_img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+        &_right_container {
+            @include flex-centered;
+            padding: 50px 90px 30px;
+            flex-flow: column;
+            box-sizing: border-box;
+        }
+
+        &:nth-of-type(1) {
+            .section_card_img {
+                flex-basis: 40%;
+            }
+            .section_card_right_container {
+                flex-basis: 60%;
+            }
+        }
+        &:nth-of-type(2) {
+            .section_card_img {
+                flex-basis: 39%;
+            }
+            .section_card_right_container {
+                flex-basis: 61%;
+            }
+        }
+        &:nth-of-type(3) {
+            .section_card_img {
+                flex-basis: 43%;
+            }
+            .section_card_right_container {
+                flex-basis: 57%;
+            }
+        }
+        &_text {
+            @include main-font;
+            margin: 0 0 15px;
+            box-sizing: border-box;
+            text-align: justify;
+        }
+        &_heading {
+            @include font($alt-font, 24px, 600, white);
+            margin: 0 0 40px;
+        }
+    }
+    &_link {
+        color: #fff;
+    }
+
+    &_banner {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -70px;
+        width: calc(100% - 45px);
+        margin: 0 auto;
+        box-sizing: border-box;
+        background: linear-gradient(
+            to right,
+            $banner-gradient-left,
+            $banner-gradient-right
+        );
+        @include flex-between;
+        &_text_wrap {
+            padding: 20px 155px;
+        }
+        &_heading {
+            @include font($alt-font, 31px, 600);
+            margin: 0;
+        }
+        &_text {
+            color: white;
+        }
+        &_button {
+            @extend .header_button;
+        }
+    }
+}
+
+.footer {
+    background-color: $primary-dark;
+    padding: 110px 30px 20px;
+    &-wrap {
+        max-width: 1530px;
+        margin: 0 auto;
+        display: flex;
+        @include flex-between;
+    }
+    &_logo {
+        margin-bottom: 0;
+        p {
+            margin: 0;
+            @include font("Hind", 23px, 600, #fff);
+            line-height: 1;
+            text-align: center;
+        }
+        span {
+            @include font($main-font, 10px, 400, #fff);
+            display: block;
+            margin-top: 10px;
+        }
+    }
+    &_text {
+        max-width: 300px;
+        @include main-font($size: 14px);
+    }
+    &-cr {
+        color: white;
+    }
+}

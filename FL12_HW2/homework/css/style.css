@@ -19,7 +19,9 @@ section::before{
 	position: absolute;
 	top: 0;
 	left: 0;
-	border: 20px solid transparent; border-left: 20px solid lightskyblue; border-top: 20px solid lightskyblue;
+	border: 20px solid transparent; 
+	border-left: 20px solid lightskyblue; 
+	border-top: 20px solid lightskyblue;
 }
 
 .tm-main-content section:first-of-type .flex-2-col {
